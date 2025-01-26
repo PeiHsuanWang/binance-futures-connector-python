@@ -4,7 +4,7 @@ from binance.api import API
 class UMFutures(API):
     def __init__(self, key=None, secret=None, **kwargs):
         if "base_url" not in kwargs:
-            kwargs["base_url"] = "https://fapi.binance.com"
+            kwargs["base_url"] = "https://papi.binance.com"
         super().__init__(key, secret, **kwargs)
 
     # MARKETS

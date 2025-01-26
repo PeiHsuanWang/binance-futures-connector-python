@@ -8,7 +8,7 @@ def change_position_mode(self, dualSidePosition: str, **kwargs):
     | **Change Position Mode (TRADE)**
     | *Change user's position mode (Hedge Mode or One-way Mode) on EVERY symbol*
 
-    :API endpoint: ``POST /fapi/v1/positionSide/dual``
+    :API endpoint: ``POST /papi/v1/um/positionSide/dual``
     :API doc: https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Change-Position-Mode
 
     :parameter dualSidePosition: string
@@ -18,7 +18,7 @@ def change_position_mode(self, dualSidePosition: str, **kwargs):
 
     check_required_parameter(dualSidePosition, "dualSidePosition")
     params = {"dualSidePosition": dualSidePosition, **kwargs}
-    url_path = "/fapi/v1/positionSide/dual"
+    url_path = "/papi/v1/um/positionSide/dual"
     return self.sign_request("POST", url_path, params)
 
 
@@ -28,7 +28,7 @@ def get_position_mode(self, **kwargs):
     | **Get Current Position Mode (USER_DATA)**
     | *Get user's position mode (Hedge Mode or One-way Mode) on EVERY symbol*
 
-    :API endpoint: ``GET /fapi/v1/positionSide/dual``
+    :API endpoint: ``GET /papi/v1/um/positionSide/dual``
     :API doc: https://developers.binance.com/docs/derivatives/usds-margined-futures/account/rest-api/Get-Current-Position-Mode
 
     :parameter recvWindow: optional int
@@ -36,7 +36,7 @@ def get_position_mode(self, **kwargs):
     """
 
     params = {**kwargs}
-    url_path = "/fapi/v1/positionSide/dual"
+    url_path = "/papi/v1/um/positionSide/dual"
     return self.sign_request("GET", url_path, params)
 
 
@@ -46,7 +46,7 @@ def change_multi_asset_mode(self, multiAssetsMargin: str, **kwargs):
     | **Change Multi-Assets Mode (TRADE)**
     | *Change user's Multi-Assets mode (Multi-Assets Mode or Single-Asset Mode) on Every symbol*
 
-    :API endpoint: ``POST /fapi/v1/multiAssetsMargin``
+    :API endpoint: ``POST /papi/v1/um/multiAssetsMargin``
     :API doc: https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Change-Multi-Assets-Mode
 
     :parameter multiAssetsMargin: string; "true": Multi-Assets Mode; "false": Single-Asset Mode
@@ -56,7 +56,7 @@ def change_multi_asset_mode(self, multiAssetsMargin: str, **kwargs):
 
     check_required_parameter(multiAssetsMargin, "multiAssetsMargin")
     params = {"multiAssetsMargin": multiAssetsMargin, **kwargs}
-    url_path = "/fapi/v1/multiAssetsMargin"
+    url_path = "/papi/v1/um/multiAssetsMargin"
     return self.sign_request("POST", url_path, params)
 
 
@@ -66,7 +66,7 @@ def get_multi_asset_mode(self, **kwargs):
     | **Get Current Multi-Assets Mode (USER_DATA)**
     | *Get user's Multi-Assets mode (Multi-Assets Mode or Single-Asset Mode) on Every symbol*
 
-    :API endpoint: ``GET /fapi/v1/multiAssetsMargin``
+    :API endpoint: ``GET /papi/v1/um/multiAssetsMargin``
     :API doc: https://developers.binance.com/docs/derivatives/usds-margined-futures/account/rest-api/Get-Current-Multi-Assets-Mode
 
     :parameter recvWindow: optional int
@@ -74,7 +74,7 @@ def get_multi_asset_mode(self, **kwargs):
     """
 
     params = {**kwargs}
-    url_path = "/fapi/v1/multiAssetsMargin"
+    url_path = "/papi/v1/um/multiAssetsMargin"
     return self.sign_request("GET", url_path, params)
 
 
@@ -84,7 +84,7 @@ def new_order(self, symbol: str, side: str, type: str, **kwargs):
     | **New Order (TRADE)**
     | *Send a new order*
 
-    :API endpoint: ``POST /fapi/v1/order``
+    :API endpoint: ``POST /papi/v1/um/order``
     :API doc: https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api
 
     :parameter symbol: string
@@ -112,7 +112,7 @@ def new_order(self, symbol: str, side: str, type: str, **kwargs):
 
     check_required_parameters([[symbol, "symbol"], [side, "side"], [type, "type"]])
     params = {"symbol": symbol, "side": side, "type": type, **kwargs}
-    url_path = "/fapi/v1/order"
+    url_path = "/papi/v1/um/order"
     return self.sign_request("POST", url_path, params)
 
 
@@ -122,7 +122,7 @@ def new_order_test(self, symbol: str, side: str, type: str, **kwargs):
     | **New Test Order (TRADE)**
     | *Send a new test order*
 
-    :API endpoint: ``POST /fapi/v1/order/test``
+    :API endpoint: ``POST /papi/v1/um/order/test``
     :API doc: https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/New-Order-Test
 
     :parameter symbol: string
@@ -147,7 +147,7 @@ def new_order_test(self, symbol: str, side: str, type: str, **kwargs):
 
     check_required_parameters([[symbol, "symbol"], [side, "side"], [type, "type"]])
     params = {"symbol": symbol, "side": side, "type": type, **kwargs}
-    url_path = "/fapi/v1/order/test"
+    url_path = "/papi/v1/um/order/test"
     return self.sign_request("POST", url_path, params)
 
 
@@ -166,7 +166,7 @@ def modify_order(
     | **Modify Order (TRADE)**
     | *Order modify function, currently only LIMIT order modification is supported, modified orders will be reordered in the match queue*
 
-    :API endpoint: ``PUT /fapi/v1/order``
+    :API endpoint: ``PUT /papi/v1/um/order``
     :API doc: https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Modify-Order
 
     :parameter symbol: string
@@ -211,7 +211,7 @@ def modify_order(
             **kwargs,
         }
 
-    url_path = "/fapi/v1/order"
+    url_path = "/papi/v1/um/order"
     return self.sign_request("PUT", url_path, params)
 
 
@@ -221,7 +221,7 @@ def new_batch_order(self, batchOrders: list):
     | **Place Multiple Orders (TRADE)**
     | *Post a new batch order*
 
-    :API endpoint: ``POST /fapi/v1/batchOrders``
+    :API endpoint: ``POST /papi/v1/um/batchOrders``
     :API doc: https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Place-Multiple-Orders
 
     :parameter symbol: string
@@ -279,7 +279,7 @@ def new_batch_order(self, batchOrders: list):
     """
 
     params = {"batchOrders": batchOrders}
-    url_path = "/fapi/v1/batchOrders"
+    url_path = "/papi/v1/um/batchOrders"
     return self.sign_request("POST", url_path, params, True)
 
 
@@ -291,7 +291,7 @@ def query_order(
     | **Query Order (USER_DATA)**
     | *Check an order's status*
 
-    :API endpoint: ``GET /fapi/v1/order``
+    :API endpoint: ``GET /papi/v1/um/order``
     :API doc: https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Query-Order
 
     :parameter symbol: string
@@ -314,7 +314,7 @@ def query_order(
     else:
         params = {"symbol": symbol, "origClientOrderId": origClientOrderId, **kwargs}
 
-    url_path = "/fapi/v1/order"
+    url_path = "/papi/v1/um/order"
     return self.sign_request("GET", url_path, params)
 
 
@@ -326,7 +326,7 @@ def cancel_order(
     | **Cancel Order (TRADE)**
     | *Cancel an active order.*
 
-    :API endpoint: ``DELETE /fapi/v1/order``
+    :API endpoint: ``DELETE /papi/v1/um/order``
     :API doc: https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Cancel-Order
 
     :parameter symbol: string
@@ -350,7 +350,7 @@ def cancel_order(
     else:
         params = {"symbol": symbol, "origClientOrderId": origClientOrderId, **kwargs}
 
-    url_path = "/fapi/v1/order"
+    url_path = "/papi/v1/um/order"
     return self.sign_request("DELETE", url_path, params)
 
 
@@ -359,7 +359,7 @@ def cancel_open_orders(self, symbol: str, **kwargs):
     |
     | **Cancel All Open Orders (TRADE)**
 
-    :API endpoint: ``DELETE /fapi/v1/allOpenOrders``
+    :API endpoint: ``DELETE /papi/v1/um/allOpenOrders``
     :API doc: https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Cancel-All-Open-Orders
 
     :parameter symbol: string
@@ -367,7 +367,7 @@ def cancel_open_orders(self, symbol: str, **kwargs):
     |
     """
 
-    url_path = "/fapi/v1/allOpenOrders"
+    url_path = "/papi/v1/um/allOpenOrders"
     params = {"symbol": symbol, **kwargs}
 
     return self.sign_request("DELETE", url_path, params)
@@ -381,7 +381,7 @@ def cancel_batch_order(
     | **Cancel Multiple Orders (TRADE)**
     | *Cancel a new batch order*
 
-    :API endpoint: ``DELETE /fapi/v1/batchOrders``
+    :API endpoint: ``DELETE /papi/v1/um/batchOrders``
     :API doc: https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Cancel-Multiple-Orders
 
     :parameter symbol: string
@@ -394,7 +394,7 @@ def cancel_batch_order(
     |
     """
 
-    url_path = "/fapi/v1/batchOrders"
+    url_path = "/papi/v1/um/batchOrders"
     params = {}
 
     if (orderIdList is None) and (origClientOrderIdList is None):
@@ -427,7 +427,7 @@ def countdown_cancel_order(self, symbol: str, countdownTime: int, **kwargs):
     | **Auto-Cancel All Open Orders (TRADE)**
     | *Cancel all open orders of the specified symbol at the end of the specified countdown.*
 
-    :API endpoint: ``POST /fapi/v1/countdownCancelAll``
+    :API endpoint: ``POST /papi/v1/um/countdownCancelAll``
     :API doc: https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Auto-Cancel-All-Open-Orders
 
     :parameter symbol: string
@@ -445,7 +445,7 @@ def countdown_cancel_order(self, symbol: str, countdownTime: int, **kwargs):
     """
 
     check_required_parameters([[symbol, "symbol"], [countdownTime, "countdownTime"]])
-    url_path = "/fapi/v1/countdownCancelAll"
+    url_path = "/papi/v1/um/countdownCancelAll"
     params = {"symbol": symbol, "countdownTime": countdownTime, **kwargs}
 
     return self.sign_request("POST", url_path, params)
@@ -459,7 +459,7 @@ def get_open_orders(
     | **Query Current Open Order (USER_DATA)**
     | *Get all open orders on a symbol.*
 
-    :API endpoint: ``GET /fapi/v1/openOrder``
+    :API endpoint: ``GET /papi/v1/um/openOrder``
     :API doc: https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Query-Current-Open-Order
 
     :parameter symbol: string
@@ -472,7 +472,7 @@ def get_open_orders(
         - If the queried order has been filled or cancelled, the error message "Order does not exist" will be returned.
     """
 
-    url_path = "/fapi/v1/openOrder"
+    url_path = "/papi/v1/um/openOrder"
     params = {}
 
     if (orderId is None) and (origClientOrderId is None):
@@ -498,7 +498,7 @@ def get_orders(self, **kwargs):
     | *Get all open orders on a symbol. Careful when accessing this with no symbol.*
     | *If the symbol is not sent, orders for all symbols will be returned in an array.*
 
-    :API endpoint: ``GET /fapi/v1/openOrders``
+    :API endpoint: ``GET /papi/v1/um/openOrders``
     :API doc: https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Current-All-Open-Orders
 
     :parameter symbol: optional string
@@ -506,7 +506,7 @@ def get_orders(self, **kwargs):
     |
     """
 
-    url_path = "/fapi/v1/openOrders"
+    url_path = "/papi/v1/um/openOrders"
     params = {**kwargs}
 
     return self.sign_request("GET", url_path, params)
@@ -518,7 +518,7 @@ def get_all_orders(self, symbol: str, **kwargs):
     | **All Orders (USER_DATA)**
     | *Get all account orders; active, canceled, or filled.*
 
-    :API endpoint: ``GET /fapi/v1/allOrders``
+    :API endpoint: ``GET /papi/v1/um/allOrders``
     :API doc: https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/All-Orders
 
     :parameter symbol: string
@@ -531,7 +531,7 @@ def get_all_orders(self, symbol: str, **kwargs):
     """
 
     check_required_parameter(symbol, "symbol")
-    url_path = "/fapi/v1/allOrders"
+    url_path = "/papi/v1/um/allOrders"
     params = {"symbol": symbol, **kwargs}
 
     return self.sign_request("GET", url_path, params)
@@ -543,14 +543,15 @@ def balance(self, **kwargs):
     | **Futures Account Balance V2 (USER_DATA)**
     | *Get current account balance*
 
-    :API endpoint: ``GET /fapi/v3/balance``
+    :API endpoint: ``GET /papi/v1/um/balance``
     :API doc: https://developers.binance.com/docs/derivatives/usds-margined-futures/account/rest-api/Futures-Account-Balance-V3
 
     :parameter recvWindow: optional int
     |
     """
 
-    url_path = "/fapi/v3/balance"
+    # url_path = "/papi/v1/um/balance"
+    url_path = "/papi/v1/balance"
     return self.sign_request("GET", url_path, {**kwargs})
 
 
@@ -560,14 +561,15 @@ def account(self, **kwargs):
     | **Account Information V3(USER_DATA)**
     | *Get current account information*
 
-    :API endpoint: ``GET /fapi/v3/account``
+    :API endpoint: ``GET /papi/v1/um/account``
     :API doc: https://developers.binance.com/docs/derivatives/usds-margined-futures/account/rest-api/Account-Information-V3
 
     :parameter recvWindow: optional int
     |
     """
 
-    url_path = "/fapi/v3/account"
+    # url_path = "/papi/v1/um/account"
+    url_path = "/papi/v1/account"
     return self.sign_request("GET", url_path, {**kwargs})
 
 
@@ -577,7 +579,7 @@ def change_leverage(self, symbol: str, leverage: int, **kwargs):
     | **Change Initial Leverage (TRADE)**
     | *Change user's initial leverage of specific symbol market.*
 
-    :API endpoint: ``POST /fapi/v1/leverage``
+    :API endpoint: ``POST /papi/v1/um/leverage``
     :API doc: https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Change-Initial-Leverage
 
     :parameter symbol: string
@@ -587,7 +589,7 @@ def change_leverage(self, symbol: str, leverage: int, **kwargs):
     """
 
     check_required_parameters([[symbol, "symbol"], [leverage, "leverage"]])
-    url_path = "/fapi/v1/leverage"
+    url_path = "/papi/v1/um/leverage"
     params = {"symbol": symbol, "leverage": leverage, **kwargs}
     return self.sign_request("POST", url_path, params)
 
@@ -598,7 +600,7 @@ def change_margin_type(self, symbol: str, marginType: str, **kwargs):
     | **Change margin type (TRADE)**
     | *Change user's margin type of specific symbol market.*
 
-    :API endpoint: ``POST /fapi/v1/marginType``
+    :API endpoint: ``POST /papi/v1/um/marginType``
     :API doc: https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Change-Margin-Type
 
     :parameter symbol: string
@@ -609,7 +611,7 @@ def change_margin_type(self, symbol: str, marginType: str, **kwargs):
 
     check_required_parameters([[symbol, "symbol"], [marginType, "marginType"]])
 
-    url_path = "/fapi/v1/marginType"
+    url_path = "/papi/v1/um/marginType"
     params = {"symbol": symbol, "marginType": marginType, **kwargs}
     return self.sign_request("POST", url_path, params)
 
@@ -621,7 +623,7 @@ def modify_isolated_position_margin(
     |
     | **Modify Isolated Position Margin (TRADE)**
 
-    :API endpoint: ``POST /fapi/v1/positionMargin``
+    :API endpoint: ``POST /papi/v1/um/positionMargin``
     :API doc: https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Modify-Isolated-Position-Margin
 
     :parameter symbol: string
@@ -633,7 +635,7 @@ def modify_isolated_position_margin(
     """
 
     check_required_parameters([[symbol, "symbol"], [amount, "amount"], [type, "type"]])
-    url_path = "/fapi/v1/positionMargin"
+    url_path = "/papi/v1/um/positionMargin"
     params = {"symbol": symbol, "amount": amount, "type": type, **kwargs}
     return self.sign_request("POST", url_path, params)
 
@@ -644,7 +646,7 @@ def get_position_margin_history(self, symbol: str, **kwargs):
     | **Get Position Margin Change History (TRADE)**
     | *Get position margin history on a symbol.*
 
-    :API endpoint: ``GET /fapi/v1/positionMargin/history``
+    :API endpoint: ``GET /papi/v1/um/positionMargin/history``
     :API doc: https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Get-Position-Margin-Change-History
 
     :parameter symbol: string
@@ -657,7 +659,7 @@ def get_position_margin_history(self, symbol: str, **kwargs):
     """
 
     check_required_parameter(symbol, "symbol")
-    url_path = "/fapi/v1/positionMargin/history"
+    url_path = "/papi/v1/um/positionMargin/history"
     params = {"symbol": symbol, **kwargs}
 
     return self.sign_request("GET", url_path, params)
@@ -669,7 +671,7 @@ def get_position_risk(self, **kwargs):
     | **Position Information V2 (USER_DATA)**
     | *Get current position information.*
 
-    :API endpoint: ``GET /fapi/v3/positionRisk``
+    :API endpoint: ``GET /papi/v1/um/positionRisk``
     :API doc: https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Position-Information-V3
 
     :parameter symbol: string
@@ -677,7 +679,7 @@ def get_position_risk(self, **kwargs):
     |
     """
 
-    url_path = "/fapi/v3/positionRisk"
+    url_path = "/papi/v1/um/positionRisk"
     params = {**kwargs}
 
     return self.sign_request("GET", url_path, params)
@@ -689,7 +691,7 @@ def get_account_trades(self, symbol: str, **kwargs):
     | **Account Trade List (USER_DATA)**
     | *Get trades for a specific account and symbol.*
 
-    :API endpoint: ``GET /fapi/v1/userTrades``
+    :API endpoint: ``GET /papi/v1/um/userTrades``
     :API doc: https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Account-Trade-List
 
     :parameter symbol: string
@@ -707,7 +709,7 @@ def get_account_trades(self, symbol: str, **kwargs):
     """
 
     check_required_parameter(symbol, "symbol")
-    url_path = "/fapi/v1/userTrades"
+    url_path = "/papi/v1/um/userTrades"
     params = {"symbol": symbol, **kwargs}
 
     return self.sign_request("GET", url_path, params)
@@ -719,7 +721,7 @@ def get_income_history(self, **kwargs):
     | **Get Income History (USER_DATA)**
     | *Get trades for a specific account and symbol.*
 
-    :API endpoint: ``GET /fapi/v1/income``
+    :API endpoint: ``GET /papi/v1/um/income``
     :API doc: https://developers.binance.com/docs/derivatives/usds-margined-futures/account/rest-api/Get-Income-History
 
     :parameter symbol: optional string
@@ -736,7 +738,7 @@ def get_income_history(self, **kwargs):
         - "trandId" is unique in the same incomeType for a user
     """
 
-    url_path = "/fapi/v1/income"
+    url_path = "/papi/v1/um/income"
     params = {**kwargs}
     return self.sign_request("GET", url_path, params)
 
@@ -747,7 +749,7 @@ def leverage_brackets(self, **kwargs):
     | **Notional and Leverage Brackets (USER_DATA)**
     | *Get notional and leverage bracket.*
 
-    :API endpoint: ``GET /fapi/v1/leverageBracket``
+    :API endpoint: ``GET /papi/v1/um/leverageBracket``
     :API doc: https://developers.binance.com/docs/derivatives/usds-margined-futures/account/rest-api/Notional-and-Leverage-Brackets
 
     :parameter symbol: optional string
@@ -755,7 +757,7 @@ def leverage_brackets(self, **kwargs):
     |
     """
 
-    url_path = "/fapi/v1/leverageBracket"
+    url_path = "/papi/v1/um/leverageBracket"
     params = {**kwargs}
 
     return self.sign_request("GET", url_path, params)
@@ -767,7 +769,7 @@ def adl_quantile(self, **kwargs):
     | **Position ADL Quantile Estimation (USER_DATA)**
     | *Get Position ADL Quantile Estimation*
 
-    :API endpoint: ``GET /fapi/v1/adlQuantile``
+    :API endpoint: ``GET /papi/v1/um/adlQuantile``
     :API doc: https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Position-ADL-Quantile-Estimation
 
     :parameter symbol: optional string
@@ -783,7 +785,7 @@ def adl_quantile(self, **kwargs):
     |
     """
 
-    url_path = "/fapi/v1/adlQuantile"
+    url_path = "/papi/v1/um/adlQuantile"
     params = {**kwargs}
     return self.sign_request("GET", url_path, params)
 
@@ -794,7 +796,7 @@ def force_orders(self, **kwargs):
     | **User's Force Orders (USER_DATA)**
     | *Get User's Force Orders*
 
-    :API endpoint: ``GET /fapi/v1/forceOrders``
+    :API endpoint: ``GET /papi/v1/um/forceOrders``
     :API doc: https://developers.binance.com/docs/derivatives/usds-margined-futures/trade/rest-api/Users-Force-Orders
 
     :parameter symbol: optional string
@@ -810,7 +812,7 @@ def force_orders(self, **kwargs):
     |
     """
 
-    url_path = "/fapi/v1/forceOrders"
+    url_path = "/papi/v1/um/forceOrders"
     params = {**kwargs}
 
     return self.sign_request("GET", url_path, params)
@@ -822,7 +824,7 @@ def api_trading_status(self, **kwargs):
     | **User API Trading Quantitative Rules Indicators (USER_DATA)**
     | *Get User API Trading Quantitative Rules Indicators*
 
-    :API endpoint: ``GET /fapi/v1/apiTradingStatus``
+    :API endpoint: ``GET /papi/v1/um/apiTradingStatus``
     :API doc: https://developers.binance.com/docs/derivatives/usds-margined-futures/account/rest-api/Futures-Trading-Quantitative-Rules-Indicators
 
     :parameter symbol: optional string
@@ -830,7 +832,7 @@ def api_trading_status(self, **kwargs):
     |
     """
 
-    url_path = "/fapi/v1/apiTradingStatus"
+    url_path = "/papi/v1/um/apiTradingStatus"
     params = {**kwargs}
 
     return self.sign_request("GET", url_path, params)
@@ -842,7 +844,7 @@ def commission_rate(self, symbol: str, **kwargs):
     | **User Commission Rate (USER_DATA)**
     | *Get commission rate of symbol*
 
-    :API endpoint: ``GET /fapi/v1/commissionRate``
+    :API endpoint: ``GET /papi/v1/um/commissionRate``
     :API doc: https://developers.binance.com/docs/derivatives/usds-margined-futures/account/rest-api/User-Commission-Rate
 
     :parameter symbol: string
@@ -851,7 +853,7 @@ def commission_rate(self, symbol: str, **kwargs):
     """
 
     check_required_parameter(symbol, "symbol")
-    url_path = "/fapi/v1/commissionRate"
+    url_path = "/papi/v1/um/commissionRate"
     params = {"symbol": symbol, **kwargs}
 
     return self.sign_request("GET", url_path, params)
@@ -862,13 +864,13 @@ def futures_account_configuration(self, **kwargs):
     |
     | **Futures Account Configuration(USER_DATA)**
 
-    :API endpoint: ``GET /fapi/v1/accountConfig``
+    :API endpoint: ``GET /papi/v1/um/accountConfig``
     :API doc: https://developers.binance.com/docs/derivatives/usds-margined-futures/account/rest-api/Account-Config
 
     :parameter recvWindow: optional int
     |
     """
-    url_path = "/fapi/v1/accountConfig"
+    url_path = "/papi/v1/um/accountConfig"
     params = {**kwargs}
 
     return self.sign_request("GET", url_path, params)
@@ -880,14 +882,14 @@ def symbol_configuration(self, **kwargs):
     | **Symbol Configuration(USER_DATA)**
     | *Get current account symbol configuration.*
 
-    :API endpoint: ``GET /fapi/v1/symbolConfig``
+    :API endpoint: ``GET /papi/v1/um/symbolConfig``
     :API doc: https://developers.binance.com/docs/derivatives/usds-margined-futures/account/rest-api/Symbol-Config
 
     :parameter symbol: optional string
     :parameter recvWindow: optional int
     |
     """
-    url_path = "/fapi/v1/symbolConfig"
+    url_path = "/papi/v1/um/symbolConfig"
     params = {**kwargs}
 
     return self.sign_request("GET", url_path, params)
@@ -898,13 +900,13 @@ def query_user_rate_limit(self, **kwargs):
     |
     | **Query User Rate Limit (USER_DATA)**
 
-    :API endpoint: ``GET /fapi/v1/rateLimit/order``
+    :API endpoint: ``GET /papi/v1/um/rateLimit/order``
     :API doc: https://developers.binance.com/docs/derivatives/usds-margined-futures/account/rest-api/Query-Rate-Limit
 
     :parameter recvWindow: optional int
     |
     """
-    url_path = "/fapi/v1/rateLimit/order"
+    url_path = "/papi/v1/um/rateLimit/order"
     params = {**kwargs}
 
     return self.sign_request("GET", url_path, params)
@@ -915,7 +917,7 @@ def download_transactions_asyn(self, startTime: int, endTime: int, **kwargs):
     |
     | **Get Download Id For Futures Transaction History (USER_DATA)**
 
-    :API endpoint: ``GET /fapi/v1/income/asyn``
+    :API endpoint: ``GET /papi/v1/um/income/asyn``
     :API doc: https://developers.binance.com/docs/derivatives/usds-margined-futures/account/rest-api/Get-Download-Id-For-Futures-Transaction-History
 
     :parameter startTime:  int
@@ -926,7 +928,7 @@ def download_transactions_asyn(self, startTime: int, endTime: int, **kwargs):
 
     check_required_parameter(startTime, "startTime")
     check_required_parameter(endTime, "endTime")
-    url_path = "/fapi/v1/income/asyn"
+    url_path = "/papi/v1/um/income/asyn"
     params = {"startTime": startTime, "endTime": endTime, **kwargs}
 
     return self.sign_request("GET", url_path, params)
@@ -937,7 +939,7 @@ def aysnc_download_info(self, downloadId: str, **kwargs):
     |
     | **Get Futures Transaction History Download Link by Id (USER_DATA)**
 
-    :API endpoint: ``GET /fapi/v1/income/asyn/id``
+    :API endpoint: ``GET /papi/v1/um/income/asyn/id``
     :API doc: https://developers.binance.com/docs/derivatives/usds-margined-futures/account/rest-api/Get-Futures-Transaction-History-Download-Link-by-Id
 
     :parameter downloadId:  string
@@ -946,7 +948,7 @@ def aysnc_download_info(self, downloadId: str, **kwargs):
     """
 
     check_required_parameter(downloadId, "downloadId")
-    url_path = "/fapi/v1/income/asyn/id"
+    url_path = "/papi/v1/um/income/asyn/id"
     params = {"downloadId": downloadId, **kwargs}
 
     return self.sign_request("GET", url_path, params)
@@ -959,7 +961,7 @@ def download_order_asyn(self, startTime: int, endTime: int, **kwargs):
     | *Request Limitation is 10 times per month, shared by front end download page and rest api*
     | *The time between startTime and endTime can not be longer than 1 year*
 
-    :API endpoint: ``GET /fapi/v1/order/asyn``
+    :API endpoint: ``GET /papi/v1/um/order/asyn``
     :API doc: https://developers.binance.com/docs/derivatives/usds-margined-futures/account/rest-api/Get-Download-Id-For-Futures-Order-History
 
     :parameter startTime:  int
@@ -970,7 +972,7 @@ def download_order_asyn(self, startTime: int, endTime: int, **kwargs):
 
     check_required_parameter(startTime, "startTime")
     check_required_parameter(endTime, "endTime")
-    url_path = "/fapi/v1/order/asyn"
+    url_path = "/papi/v1/um/order/asyn"
     params = {"startTime": startTime, "endTime": endTime, **kwargs}
 
     return self.sign_request("GET", url_path, params)
@@ -982,7 +984,7 @@ def async_download_order_id(self, downloadId: str, **kwargs):
     | **Get Futures Order History Download Link by Id (USER_DATA)**
     | *Download link expiration: 24h*
 
-    :API endpoint: ``GET /fapi/v1/order/asyn/id``
+    :API endpoint: ``GET /papi/v1/um/order/asyn/id``
     :API doc: https://developers.binance.com/docs/derivatives/usds-margined-futures/account/rest-api/Get-Futures-Order-History-Download-Link-by-Id
 
     :parameter downloadId:  string
@@ -991,7 +993,7 @@ def async_download_order_id(self, downloadId: str, **kwargs):
     """
 
     check_required_parameter(downloadId, "downloadId")
-    url_path = "/fapi/v1/order/asyn/id"
+    url_path = "/papi/v1/um/order/asyn/id"
     params = {"downloadId": downloadId, **kwargs}
 
     return self.sign_request("GET", url_path, params)
@@ -1004,7 +1006,7 @@ def download_trade_asyn(self, startTime: int, endTime: int, **kwargs):
     | *Request Limitation is 5 times per month, shared by front end download page and rest api*
     | *The time between startTime and endTime can not be longer than 1 year*
 
-    :API endpoint: ``GET /fapi/v1/trade/asyn``
+    :API endpoint: ``GET /papi/v1/um/trade/asyn``
     :API doc: https://developers.binance.com/docs/derivatives/usds-margined-futures/account/rest-api/Get-Download-Id-For-Futures-Trade-History
 
     :parameter startTime:  int
@@ -1015,7 +1017,7 @@ def download_trade_asyn(self, startTime: int, endTime: int, **kwargs):
 
     check_required_parameter(startTime, "startTime")
     check_required_parameter(endTime, "endTime")
-    url_path = "/fapi/v1/trade/asyn"
+    url_path = "/papi/v1/um/trade/asyn"
     params = {"startTime": startTime, "endTime": endTime, **kwargs}
 
     return self.sign_request("GET", url_path, params)
@@ -1027,7 +1029,7 @@ def async_download_trade_id(self, downloadId: str, **kwargs):
     | **Get Futures Trade Download Link by Id(USER_DATA)**
     | *Download link expiration: 24h*
 
-    :API endpoint: ``GET /fapi/v1/trade/asyn/id``
+    :API endpoint: ``GET /papi/v1/um/trade/asyn/id``
     :API doc: https://developers.binance.com/docs/derivatives/usds-margined-futures/account/rest-api/Get-Futures-Trade-Download-Link-by-Id
 
     :parameter downloadId:  string
@@ -1036,7 +1038,7 @@ def async_download_trade_id(self, downloadId: str, **kwargs):
     """
 
     check_required_parameter(downloadId, "downloadId")
-    url_path = "/fapi/v1/trade/asyn/id"
+    url_path = "/papi/v1/um/trade/asyn/id"
     params = {"downloadId": downloadId, **kwargs}
 
     return self.sign_request("GET", url_path, params)
@@ -1048,7 +1050,7 @@ def toggle_bnb_burn(self, feeBurn: str, **kwargs):
     | **Toggle BNB Burn On Futures Trade (TRADE)**
     | *Change user's BNB Fee Discount (Fee Discount On or Fee Discount Off ) on EVERY symbol*
 
-    :API endpoint: ``POST /fapi/v1/feeBurn``
+    :API endpoint: ``POST /papi/v1/um/feeBurn``
     :API doc: https://developers.binance.com/docs/derivatives/usds-margined-futures/account/rest-api/Toggle-BNB-Burn-On-Futures-Trade
 
     :parameter feeBurn: string; "true": Fee Discount On; "false": Fee Discount Off
@@ -1057,7 +1059,7 @@ def toggle_bnb_burn(self, feeBurn: str, **kwargs):
     """
 
     check_required_parameter(feeBurn, "feeBurn")
-    url_path = "/fapi/v1/feeBurn"
+    url_path = "/papi/v1/um/feeBurn"
     params = {"feeBurn": feeBurn, **kwargs}
 
     return self.sign_request("POST", url_path, params)
@@ -1068,14 +1070,14 @@ def get_bnb_burn(self, **kwargs):
     |
     | **Get BNB Burn Status (USER_DATA)**
 
-    :API endpoint: ``GET /fapi/v1/feeBurn``
+    :API endpoint: ``GET /papi/v1/um/feeBurn``
     :API doc: https://developers.binance.com/docs/derivatives/usds-margined-futures/account/rest-api/Get-BNB-Burn-Status
 
     :parameter recvWindow: optional int
     |
     """
 
-    url_path = "/fapi/v1/feeBurn"
+    url_path = "/papi/v1/um/feeBurn"
     params = {**kwargs}
 
     return self.sign_request("GET", url_path, params)
